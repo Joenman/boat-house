@@ -89,7 +89,7 @@ pipeline {
                 sh "mkdir ./jmeter/output"
                 sh "docker run --interactive --rm --volume `pwd`/jmeter:/jmeter egaillardon/jmeter --nongui --testfile boat-house.jmx --logfile output/result.jtl -e -o ./output"
                 sh "ls -al ./jmeter"
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './jmeter/output', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './jmeter/output', reportFiles: 'index.html', reportName: 'Jmeter Report', reportTitles: ''])
             }
           }
         }

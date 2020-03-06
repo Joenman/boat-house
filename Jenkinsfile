@@ -88,7 +88,6 @@ pipeline {
                 sh "rm -R ./jmeter/output || exit 0"
                 sh "mkdir ./jmeter/output"
                 sh "docker run --interactive --rm --volume `pwd`/jmeter:/jmeter egaillardon/jmeter --nongui --testfile boat-house.jmx --logfile output/result.jtl -e -o ./output"
-                step([$class: 'ArtifactArchiver', artifacts: 'jmeter/*.jtl, jmeter/jmeter.log'])
                 sh "ls -al ./jmeter"
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './jmeter/output', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
             }
